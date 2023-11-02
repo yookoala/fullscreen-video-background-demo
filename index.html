@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>Fullscreen Demo without JavaScript</title>
+<style>
+/**
+ * Basics style to make the video offset to the right
+ * to reveal the background color.
+ */
+video {
+    display: block;
+    width: 600px;
+    aspect-ratio: 16/9;
+}
+
+/**
+ * CSS background color.
+ */
+video {
+    background-color: blue;
+}
+video:fullscreen {
+    background-color: green;
+}
+</style>
+</head>
+<body>
+<video controls loop>
+    <source src="./assets/rotating-cube.webm">
+</video>
+</body>
+</html>
