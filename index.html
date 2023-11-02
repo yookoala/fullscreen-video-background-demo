@@ -3,16 +3,6 @@
 <title>Fullscreen Demo without JavaScript</title>
 <style>
 /**
- * Basics style to make the video offset to the right
- * to reveal the background color.
- */
-video {
-    display: block;
-    width: 600px;
-    aspect-ratio: 16/9;
-}
-
-/**
  * CSS background color.
  */
 video {
@@ -24,8 +14,19 @@ video:fullscreen {
 </style>
 </head>
 <body>
+<h1>Fullscreen Demo without JavaScript</h1>
+<p>
+    The webm video below has a transparent background. The element background color is styled by CSS.
+</p>
+<p>
+    Normally, the background is blue. In fullscreen, the background will be green.
+</p>
 <video controls loop>
     <source src="./assets/rotating-cube.webm">
 </video>
+<p>
+    See <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/:fullscreen">MDN</a>
+    for more information about the :fullscreen pseudo-class.
+</p>
 </body>
 </html>
