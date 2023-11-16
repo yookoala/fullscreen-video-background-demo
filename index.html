@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Fullscreen Demo without JavaScript</title>
+<title>:fullscreen | Demo without JavaScript</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
 <style>
 /**
@@ -11,53 +11,85 @@ code {
     white-space: pre;
     background-color: #eee;
     padding: 1em;
+    max-width: 100%;
+    overflow: auto;
 }
 body {
-    display: flex;
     margin: 0;
-    flex-direction: column;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.25);
+    background: black;
+    font-family: sans-serif;
+}
+.grid {
+    width: 100%;
+    min-width: 500px;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+}
+@media (width > 960px) {
+    .grid {
+        display: grid;
+        grid-template-columns: 430px 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+            "introduction introduction"
+            "sidebar main";
+    }
+}
+@media (width > 1200px) {
+    .grid {
+        display: grid;
+        grid-template-columns: 500px 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+            "introduction introduction"
+            "sidebar main";
+    }
+}
+article {
+    padding: 1em;
+    grid-area: introduction;
+    color: rgba(240, 240, 240, 0.9);
+    background-color: rgba(80, 80, 80, 1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+}
+h1 {
+    color: white;
+    font-size: 2.5em;
+}
+.notes {
+    display: block;
+    font-style: italic;
+}
+a {
+    color: inherit;
 }
 main {
     padding: 1em;
+    grid-area: main;
+    background-color: rgba(200, 200, 200, 1);
 }
 aside {
     color: rgba(255, 255, 255, 0.7);
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(50, 50, 50, 1);
     padding: 1em;
+    grid-area: sidebar;
 }
 code {
     background-color: black;
     color: white;
+    font-family: monospace;
+}
+.code {
+    font-family: monospace;
+    font-weight: bold;
 }
 video {
+    display: block;
+    margin: 0 auto;
     max-width: 100%;
     aspect-ratio: 16/9;
-}
-@media (width >= 900px)  {
-    body {
-        flex-direction: row-reverse;
-    }
-    main {
-        flex: 1;
-    }
-    aside {
-        width: 300px;
-        font-size: 0.8em;
-    }
-}
-@media (width >= 1200px)  {
-    body {
-        flex-direction: row-reverse;
-    }
-    main {
-        flex: 1;
-    }
-    aside {
-        width: 400px;
-        font-size: 1em;
-    }
 }
 
 /**
@@ -72,28 +104,39 @@ video:fullscreen {
 </style>
 </head>
 <body>
-<main>
-    <h1>Fullscreen Demo without JavaScript</h1>
-    <p>
-        The webm video below has a transparent background. The element background color is styled by CSS.
-    </p>
-    <p>
-        Normally, the background is blue. In fullscreen, the background will be green.
-    </p>
-    <video controls loop>
-        <source src="./assets/rotating-cube.webm">
-    </video>
-    <p>
-        See <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/:fullscreen">MDN</a>
-        for more information about the :fullscreen pseudo-class.
-    </p>
-</main>
-<aside>
-    <h2>Source Code</h2>
-    <section class="code-css">
-        <h3>CSS</h3>
-        <code data-language="css">
-/**
+<div class="grid">
+    <article>
+        <h1>:fullscreen - Demo without JavaScript</h1>
+        <p>
+            There is a normal misconception that <span class="code">:fullscreen</span> pseudo-class can only be used with JavaScript.
+            This is because that fullscreen mode is usually triggered by JavaScript. However, it is not necessary.
+        </p>
+        <p>
+            HTML <span class="code">&lt;video&gt;</span> element control interface uses Fullscreen API to trigger itself to be fullscreen.
+            And by that, the <span class="code">:fullscreen</span> pseudo-class can be used to select and style it.
+        </p>
+        <p>
+            <strong>Demo Notes</strong>
+            <ul>
+                <li>The webm video below has a transparent background. The element background color is styled by CSS.</li>
+                <li>Normally, the background is blue. In fullscreen, the background will be green.</li>
+            </ul>
+        </p>
+        <p class="notes">
+            See <a target="_blank" title=":fullscreen - CSS Cascading Stylesheets | MDN" href="https://developer.mozilla.org/en-US/docs/Web/CSS/:fullscreen">MDN</a>
+            for more information about the :fullscreen pseudo-class.
+        </p>
+    </article>
+    <main>
+        <video controls loop>
+            <source src="./assets/rotating-cube.webm">
+        </video>
+    </main>
+    <aside>
+        <h2>Source Code</h2>
+        <section class="code-css">
+            <h3>CSS</h3>
+            <code data-language="css">/**
  * CSS background color.
  */
 video {
@@ -101,17 +144,16 @@ video {
 }
 video:fullscreen {
     background-color: green;
-}
-        </code>
-    </section>
-    <section class="code-html">
-        <h3>HTML</h3>
-        <code data-language="html">
-&lt;video controls loop&gt;
+}</code>
+        </section>
+        <section class="code-html">
+            <h3>HTML</h3>
+            <code data-language="html">&lt;video controls loop&gt;
     &lt;source src="./assets/rotating-cube.webm"&gt;
-&lt;/video&gt;
-        </code>
-    </section>
-</aside>
+&lt;/video&gt;</code>
+        </section>
+    </aside>
+</div>
+
 </body>
 </html>
