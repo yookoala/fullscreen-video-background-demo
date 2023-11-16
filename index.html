@@ -97,6 +97,26 @@ video {
     max-width: 100%;
     aspect-ratio: 16/9;
 }
+.blue, .green {
+    font-family: monospace;
+    font-weight: bold;
+}
+.blue::before,
+.green::before {
+    content: '';
+    display: inline-block;
+    width: 0.8em;
+    height: 0.8em;
+    margin: 0 0.25em 0 0.4em;
+    vertical-align: baseline;
+    outline: 1px solid white;
+}
+.blue::before {
+    background-color: blue;
+}
+.green::before {
+    background-color: green;
+}
 
 /**
  * CSS background color.
@@ -125,7 +145,8 @@ video:fullscreen {
             <strong>Demo Notes</strong>
             <ul>
                 <li>The webm video below has a transparent background. The element background color is styled by CSS.</li>
-                <li>Normally, the background is blue. In fullscreen, the background will be green.</li>
+                <li>Normally, the background is <span class="blue">blue</span>.</li>
+                <li>In fullscreen, the background will be<span class="green">green</span>.</li>
             </ul>
         </p>
         <p class="notes">
